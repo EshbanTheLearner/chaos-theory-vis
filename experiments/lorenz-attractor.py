@@ -28,3 +28,23 @@ def interpolating_to_grid(solution, interval, n_samples):
     x, y, z = solution.sol(t)
     return x, y, z
 
+def plot(width, height, dpi, n, coords, save=False):
+    x, y, z = coords
+    fig = plt.figure(facecolor="k", figsize=(width/dpi, height/dpi))
+    ax = fig.gca(projection="3d")
+    ax.set_facecolor("k")
+    fig.subplots_adjust(left=0, right=1, bottom=0, top=1)
+    s = 10
+    cmap = plt.cm.winter
+    for i in range(0, n-s, s):
+        ax.plot(
+            x[i:i+s+1], 
+            y[i:i+s+1], 
+            z[1:i+s+1], 
+            color=cmap(i/n), 
+            alpha=0.4)
+    ax.set_axis_off()
+    if save:
+        plt.savefig("lorenz.png", dpi=dpi)
+    plt.show()
+
