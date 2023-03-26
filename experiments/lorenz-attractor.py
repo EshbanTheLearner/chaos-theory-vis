@@ -2,8 +2,7 @@ import numpy as np
 from scipy.integrate import solve_ivp
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
-
-WIDTH, HEIGH, DPI = 1000, 750, 100
+import argparse
 
 def lorenz_equations(t, X, sigma, beta, rho):
     u, v, w = X
@@ -48,3 +47,6 @@ def plot(width, height, dpi, n, coords, save=False):
         plt.savefig("lorenz.png", dpi=dpi)
     plt.show()
 
+if __name__ == "__main__":
+    WIDTH, HEIGH, DPI = 1000, 750, 100
+    parser = argparse.ArgumentParser()
